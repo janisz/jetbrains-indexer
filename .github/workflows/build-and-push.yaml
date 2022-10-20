@@ -15,11 +15,6 @@ on:
         required: false
         type: string
         default: "2022.2.4"
-    secrets:
-      username:
-        required: true
-      token:
-        required: true
 jobs:
   default:
     runs-on: ubuntu-latest
