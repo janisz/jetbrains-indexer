@@ -30,19 +30,20 @@ if [ "$SKIP_FORMAT" = "false" ]; then
     /opt/cdn-layout-tool/bin/cdn-layout-tool \
         --indexes-dir=${SHARED_INDEX_BASE} \
         --url=${INDEXES_CDN_URL} && \
-        mv ${SHARED_INDEX_BASE}/output ${SHARED_INDEX_BASE}/project/output
+        mkdir -p ${SHARED_INDEX_BASE}/project/output && \
+        mv ${SHARED_INDEX_BASE}/output/* ${SHARED_INDEX_BASE}/project/output
 fi
 
 # Generate config file for project (your-project/intellij.yaml)
 if [ "$SKIP_CONFIG_FILE" = "false" ]; then
     echo_format "Creating intellij.yaml file"
-    config_yaml="sharedIndex:\n  project:\n    - url: $INDEXES_CDN_URL\n"
+    config_yaml="sharedIndex:\n  project:\n    - url: $INDEXES_CDN_URL/$PROJECT_ID\n"
 
     # Check if intellij.yaml already exists in project, if not create one
     if [ -f "$IDEA_PROJECT_DIR/intellij.yaml" ]; then
         echo "note: Your project already has an intellij.yaml file. Be sure to add the following to it:\n"
         echo "$config_yaml"
-    else 
+    else
         touch "$IDEA_PROJECT_DIR/intellij.yaml"
         echo "$config_yaml"  >> "$IDEA_PROJECT_DIR/intellij.yaml"
         echo "Wrote the following to intellij.yaml:\n"
