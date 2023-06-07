@@ -14,7 +14,7 @@ on:
       IDE_VERSION:
         required: false
         type: string
-        default: "2022.2.4"
+        default: "2023.1.2"
 jobs:
   default:
     runs-on: ubuntu-latest
