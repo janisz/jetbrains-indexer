@@ -14,13 +14,13 @@ on:
       IDE_VERSION:
         required: false
         type: string
-        default: "2023.1.2"
+        default: "2024.3.4"
 jobs:
   default:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - name: Set up Docker Buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
